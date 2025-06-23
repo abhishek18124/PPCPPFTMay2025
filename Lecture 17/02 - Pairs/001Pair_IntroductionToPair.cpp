@@ -58,7 +58,6 @@ int main() {
 
 	sort(v.begin(), v.end(), greater<pair<int, int>>()); // in case there is a tie on first member then comparision is done on second member
 
-
 	for (pair<int, int> p : v) {
 		cout << p.first << " " << p.second << endl;
 	}
