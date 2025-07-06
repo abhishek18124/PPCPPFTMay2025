@@ -22,6 +22,8 @@ vector<int> asteroidCollision(vector<int>& asteroids) {
 
 			while (!s.empty() and s.top() > 0) {
 
+				// ast will collide with s.top()
+
 				if (abs(ast) > s.top()) {
 					// s.top() will be destroyed
 					s.pop();
