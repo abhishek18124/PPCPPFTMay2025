@@ -19,18 +19,32 @@ public :
 
 };
 
-vector<int> path;
-bool flag = false; // assume, we have not yet found the path to the target node
+bool flag = false; // assume path not found
 
-void generatePath(TreeNode* root, int target) {
+void dfs(TreeNode* root, int target, vector<int>& path) {
 
 	// base case
 
-	// todo ...
+	if (root == NULL) {
+		return;
+	}
+
+	if (root->val == target) {
+		// you've found the path from root to target
+		path.push_back(root->val);
+		flag = true;
+		return;
+	}
 
 	// recursive case
 
-	// todo ...
+	path.push_back(root->val);
+	dfs(root->left, target, path);
+	if (flag == true) return;
+	dfs(root->right, target, path);
+	if (flag == true) return;
+	path.pop_back();
+
 
 }
 
@@ -47,12 +61,20 @@ int main() {
 	root->left->right = new TreeNode(8);
 
 	root->right = new TreeNode(6);
-	root->right->left = new TreeNode(3);
+	root->right->left = new TreeNode(4);
 	root->right->right = new TreeNode(5);
 
-	int target = 3;
+	int target = 8;
 
-	generatePath(root, target);
+	vector<int> path;
+
+	dfs(root, target, path);
+
+	for (auto x : path) {
+		cout << x << " ";
+	}
+
+	cout << endl;
 
 	return 0;
 }
